@@ -52,11 +52,11 @@ const Home = ({navigation}) => {
                 }}            
             >
                 <Image 
-                    source={icons.nearby}
+                    source={icons.shopncare}
                     resizeMode="contain"
                     style={{
-                        width: 30,
-                        height: 30
+                        width: 60,
+                        height: 60
                     }}
                 />
 
@@ -80,7 +80,7 @@ const Home = ({navigation}) => {
                 justifyContent: "center"
             }}>
                 <Image
-                    source={icons.location}
+                    source={icons.nearby}
                     resizeMode="contain"
                     style={{
                         width: 30,
@@ -138,8 +138,8 @@ const Home = ({navigation}) => {
         }
         return(
             <View style={{ padding: SIZES.padding * 2}}>
-                <Text style={{...FONTS.h1}}>Main</Text>
-                <Text style={{...FONTS.h1}}>Categories</Text>
+                <Text style={{...FONTS.h1}}>Bienvenue</Text>
+                <Text style={{...FONTS.h1}}>Client</Text>
                 <FlatList
                     data={categories}
                     horizontal
