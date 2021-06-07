@@ -27,6 +27,15 @@ export const sarawak_laksa = require("../assets/images/sarawak-laksa.jpg");
 export const sushi = require("../assets/images/sushi.jpg");
 export const teh_c_peng = require("../assets/images/teh-c-peng.jpg");
 export const tomato_pasta = require("../assets/images/tomato-pasta.jpg");
+export const bricorama = require("../assets/images/bricorama.jpeg");
+export const carrefour = require("../assets/images/carrefour.jpeg");
+export const ikea = require("../assets/images/ikea.jpg");
+export const lidl = require("../assets/images/lidl.jpeg");
+export const markett = require("../assets/images/market.jpeg");
+export const pharmacie = require("../assets/images/pharmacie.jpeg");
+
+
+
 
 export default {
     avatar_1,
@@ -57,5 +66,11 @@ export default {
     sarawak_laksa,
     sushi,
     teh_c_peng,
-    tomato_pasta
+    tomato_pasta,
+    bricorama,
+    carrefour,
+    ikea,
+    lidl,
+    markett,
+    pharmacie,
 };

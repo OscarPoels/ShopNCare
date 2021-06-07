@@ -23,6 +23,18 @@ export const shopping_basket = require('../assets/icons/shopping-basket.png');
 export const star = require('../assets/icons/star.png');
 export const sushi = require('../assets/icons/sushi.png');
 export const user = require('../assets/icons/user.png');
+export const homelogo = require('../assets/icons/home.png');
+export const pharmacy = require('../assets/icons/pharmacy.png');
+export const market = require('../assets/icons/market.png');
+export const supermarket = require('../assets/icons/supermarket.png');
+export const bricolage = require('../assets/icons/bricolage.png');
+export const more = require('../assets/icons/more.png');
+export const shopncare = require('../assets/icons/logoDetoure2.png');
+
+
+
+
+
 
 export default {
     back,
@@ -49,5 +61,12 @@ export default {
     shopping_basket,
     star,
     sushi,
-    user
+    user,
+    homelogo,
+    pharmacy,
+    market,
+    supermarket,
+    bricolage,
+    more,
+    shopncare,
 }
