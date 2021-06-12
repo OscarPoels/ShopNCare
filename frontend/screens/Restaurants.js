@@ -87,7 +87,7 @@ const Restaurants = ({route, navigation}) => {
     function addProduct(name, description, price) {
         restaurant?.menu.push(
             {
-                menuId: 1,
+                menuId: restaurant?.menu?.length,
                 name: name,
                 description: description,
                 price: parseInt(price),
