@@ -28,7 +28,7 @@ class Accueil extends React.Component {
 
             <TouchableOpacity
                 style={styles.bouton}
-                onPress={() => this.nextPage()}>
+                onPress={() => this._nextPage()}>
                 <Text
                     style={{
                         color: '#fff'
