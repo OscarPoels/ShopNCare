@@ -9,7 +9,8 @@ import {
   Home,
   OrderDelivery,
   Restaurants,
-  ListeCommandesLivreur
+  ListeCommandesLivreur,
+  CommandeDetailleeLivreur,
 } from './screens'
 
 const Stack = createStackNavigator();
@@ -35,7 +36,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-          initialRouteName='ListeCommandesLivreur'
+          initialRouteName='CommandeDetailleeLivreur'
           screenOptions={{
             headerShown: false,
           }}>
@@ -43,6 +44,7 @@ const App = () => {
         <Stack.Screen name='OrderDelivery' component={OrderDelivery} />
         <Stack.Screen name='Restaurants' component={Restaurants} />
         <Stack.Screen name='ListeCommandesLivreur' component={ListeCommandesLivreur} />
+        <Stack.Screen name='CommandeDetailleeLivreur' component={CommandeDetailleeLivreur} />
       </Stack.Navigator>
     </NavigationContainer>
   )
