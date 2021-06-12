@@ -60,7 +60,7 @@ const Home = ({navigation}) => {
                     }}
                 />
 
-            </TouchableOpacity>
+            </TouchableOpacity >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{
                         width: "70%",
@@ -77,8 +77,12 @@ const Home = ({navigation}) => {
                 width: 50,
                 height: "100%",
                 paddingRight: SIZES.padding * 2,
-                justifyContent: "center"
-            }}>
+                justifyContent: "center",
+            }}
+            onPress = {() => navigation.navigate("OrderDelivery", {
+                restaurant: restaurants[0],
+                currentLocation: currentLocation
+            })}>
                 <Image
                     source={icons.nearby}
                     resizeMode="contain"

@@ -28,7 +28,7 @@ const Restaurants = ({route, navigation}) => {
     const [orderItems, setOrderItems] = React.useState([]);
     const [name, onChangeName] = React.useState("name");
     const [description, onChangeDescription] = React.useState("Description");
-    const [price, onChangePrice] = React.useState("prix");
+    const [price, onChangePrice] = React.useState(0);
 
 
 

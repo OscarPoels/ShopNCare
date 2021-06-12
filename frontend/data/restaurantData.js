@@ -1,7 +1,7 @@
 import { icons, images} from '../constants'
 
 export const initialCurrentLocation = {
-    streetName: "Garden City Mall",
+    streetName: "Paris",
     gps: {
         latitude: -1.232455,
         longitude: 36.878324
