@@ -36,7 +36,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-          initialRouteName='CommandeDetailleeLivreur'
+          initialRouteName='ListeCommandesLivreur'
           screenOptions={{
             headerShown: false,
           }}>

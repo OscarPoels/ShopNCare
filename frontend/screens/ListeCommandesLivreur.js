@@ -8,7 +8,7 @@ import {
     Animated,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Image,
+    Image, FlatList,
 } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
@@ -28,7 +28,13 @@ const ListeCommandesLivreur = ({route, navigation}) => {
         animDuration: 100
     }
 
-    for (let i = 0; i < 4; i++) {
+    var commandes = [];
+    for(let i = 1; i <= 12; i++){
+        commandes.push(
+            {
+                id: i
+            }
+        );
         state.animatePress.push(new Animated.Value(1));
     }
 
@@ -39,20 +45,29 @@ const ListeCommandesLivreur = ({route, navigation}) => {
         Animated.timing(state.animatePress[i], {toValue: state.toValueOut, duration: state.animDuration, useNativeDriver: true}).start();
     }
 
-    var commandes = [];
-    for(let i = 1; i <= 4; i++){
-        commandes.push(
-            <TouchableWithoutFeedback key={i-1} onPressIn={()=>animateIn(i-1)} onPressOut={()=>animateOut(i-1)}>
-                <Animated.View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+    const renderItem = ({ item }) => {
+        {/*
+            <TouchableOpacity
+                style={{ padding: SIZES.padding*2}}
+                onPress = {()=> navigation.navigate('Restaurants', {
+                    item,
+                    currentLocation
+                })}
+            >
+            <TouchableOpacity/>
+        */}
+        return (
+            <TouchableWithoutFeedback onPressIn={()=>animateIn(item.id-1)} onPressOut={()=>animateOut(item.id-1)}>
+                <Animated.View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
                     paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
                     borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                     elevation: 3,
                     transform: [
-                    {
-                        scale: state.animatePress[i-1]
-                    }
+                        {
+                            scale: state.animatePress[item.id-1]
+                        }
                     ]}}>
-                    <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Commande {i}</Text>
+                    <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Commande {item.id}</Text>
                     <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Nombre de produits</Text>
                 </Animated.View>
             </TouchableWithoutFeedback>
@@ -77,8 +92,16 @@ const ListeCommandesLivreur = ({route, navigation}) => {
                         onChangeText={updateSearch}
                         value={search}/>
                 </View>
-                <View style={{marginTop: SIZES.padding * 4 ,borderWidth: 0}}>
-                    {commandes}
+                <View style={{marginTop: SIZES.padding * 4, marginBottom: SIZES.padding * 30 ,borderWidth: 0}}>
+                    <FlatList
+                        data={commandes}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={item => `${item.id}`}
+                        renderItem={renderItem}
+                        contentContainerStyle = {{
+                            overflow: 'scroll',
+                        }}
+                    />
                 </View>
             </View>
         </SafeAreaView>
