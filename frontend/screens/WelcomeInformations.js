@@ -9,6 +9,7 @@ class WelcomeInformations extends React.Component {
     constructor(props){
         super(props)
         this.typePerson = 2
+        this.role = props.route.params.role;
         if(this.typePerson===1){
             this.page = ["FindAMarket","FindACourser","ContactCourser"]
         }else{
@@ -26,7 +27,8 @@ class WelcomeInformations extends React.Component {
     nextPage() {
         this.numberPage += 1
         if(this.numberPage >= 3){
-            this.numberPage =0;
+            this.props.navigation.navigate('Login')
+            
         }
         this.setState({
             page: this.page[this.numberPage]
@@ -35,6 +37,7 @@ class WelcomeInformations extends React.Component {
     }
 
     render(){
+    
         return(
         <View style={styles.container}>
 

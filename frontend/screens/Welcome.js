@@ -21,7 +21,8 @@ const Welcome  = ({navigation}) => {
                 <RedButton onPress={() => navigation.navigate("WelcomeInformations", {
                                 role: 1,
                             })} buttonText="Je suis client" buttonStyle={{marginTop: 50}}/>
-                <RedButton onPress={() => navigation.navigate("LoginOrSignIn"
+                <RedButton onPress={() => navigation.navigate("WelcomeInformations",{role: 2}
+
                             )} buttonText="Je suis livreur" buttonStyle={{marginTop: 100}}/>
 
             </View>
