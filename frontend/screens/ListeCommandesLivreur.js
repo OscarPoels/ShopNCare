@@ -29,7 +29,7 @@ const ListeCommandesLivreur = ({route, navigation}) => {
     }
 
     var commandes = [];
-    for(let i = 1; i <= 12; i++){
+    for(let i = 1; i <= 20; i++){
         commandes.push(
             {
                 id: i
@@ -39,29 +39,24 @@ const ListeCommandesLivreur = ({route, navigation}) => {
     }
 
     function animateIn (i) {
-        Animated.timing(state.animatePress[i], {toValue: state.toValueIn, duration: state.animDuration, useNativeDriver: true}).start();
+        Animated.timing(state.animatePress[i-1], {toValue: state.toValueIn, duration: state.animDuration, useNativeDriver: true}).start();
     }
     function animateOut (i) {
-        Animated.timing(state.animatePress[i], {toValue: state.toValueOut, duration: state.animDuration, useNativeDriver: true}).start();
+        Animated.timing(state.animatePress[i-1], {toValue: state.toValueOut, duration: state.animDuration, useNativeDriver: true}).start();
+    }
+
+    function onPressGoTo (i) {
+        navigation.navigate('CommandeDetailleeLivreur', i);
     }
 
     const renderItem = ({ item }) => {
-        {/*
-            <TouchableOpacity
-                style={{ padding: SIZES.padding*2}}
-                onPress = {()=> navigation.navigate('Restaurants', {
-                    item,
-                    currentLocation
-                })}
-            >
-            <TouchableOpacity/>
-        */}
         return (
-            <TouchableWithoutFeedback onPressIn={()=>animateIn(item.id-1)} onPressOut={()=>animateOut(item.id-1)}>
+            <View style={{paddingRight: SIZES.padding, paddingTop: 1, paddingLeft: 1}}>
+            <TouchableWithoutFeedback onPress={()=>onPressGoTo(item.id)} onPressIn={()=>animateIn(item.id)} onPressOut={()=>animateOut(item.id)}>
                 <Animated.View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
                     paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
                     borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                    elevation: 3,
+                    elevation: 4, zIndex: 5, backgroundColor: 'white',
                     transform: [
                         {
                             scale: state.animatePress[item.id-1]
@@ -71,6 +66,7 @@ const ListeCommandesLivreur = ({route, navigation}) => {
                     <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Nombre de produits</Text>
                 </Animated.View>
             </TouchableWithoutFeedback>
+            </View>
         )
     }
 
@@ -92,7 +88,8 @@ const ListeCommandesLivreur = ({route, navigation}) => {
                         onChangeText={updateSearch}
                         value={search}/>
                 </View>
-                <View style={{marginTop: SIZES.padding * 4, marginBottom: SIZES.padding * 30 ,borderWidth: 0}}>
+                <View style={styles.redBackground}></View>
+                <View style={{marginTop: SIZES.padding * 4, marginBottom: SIZES.padding * 29 ,borderWidth: 0}}>
                     <FlatList
                         data={commandes}
                         showsVerticalScrollIndicator={false}
@@ -121,14 +118,15 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     redBackground : {
-        position: 'relative',
-        top: 180,
+        position: 'absolute',
+        top: 200,
+        left: 0,
         borderTopRightRadius: 50,
         borderBottomRightRadius: 50,
         backgroundColor: '#bd0101',
-        height: '70%',
+        height: '63%',
         width: '20%',
-        zIndex: -1
+        zIndex: -5
     },
     bonjourLivreurView : {
         position: 'relative',

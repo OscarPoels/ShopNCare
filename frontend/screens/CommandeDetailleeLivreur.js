@@ -15,9 +15,17 @@ import { SearchBar } from 'react-native-elements';
 
 import { icons, COLORS, FONTS, SIZES } from '../constants';
 
-const ListeCommandesLivreur = ({route, navigation}) => {
+const CommandeDetailleeLivreur = ({route, navigation}) => {
 
-    const [search, updateSearch] = useState();
+    const [itemIdx, setItemIdx] = useState();
+
+    React.useEffect(() => {
+        console.log('\nHola');
+        console.log(route.params);
+        let idx = route.params;
+        setItemIdx(idx);
+        console.log(itemIdx);
+    })
 
     let [state, setState] = useState();
 
@@ -59,7 +67,7 @@ const ListeCommandesLivreur = ({route, navigation}) => {
         <SafeAreaView>
             <View style={styles.mainStyle}>
                 <View style={styles.bonjourLivreurView}>
-                    <Text style={styles.bonjourLivreurText}>Commandes</Text>
+                    <Text style={styles.bonjourLivreurText}>Commandes {itemIdx}</Text>
                 </View>
                 <View style={{marginTop: SIZES.padding * 2 ,borderWidth: 0}}>
                     <View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
@@ -144,4 +152,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListeCommandesLivreur;
+export default CommandeDetailleeLivreur;
