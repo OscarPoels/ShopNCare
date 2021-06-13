@@ -1,21 +1,10 @@
 import React from 'react';
-import {
-    SafeAreaView,
-    Platform,
-    View, 
-    Text,
-    StyleSheet,
-    Animated,
-    TouchableOpacity,
-    Image,
-    Modal,
-    Pressable,
-    TextInput,
-
-    
-} from 'react-native';
+import {SafeAreaView,Platform,View, Text,StyleSheet,Animated,TouchableOpacity,Image,Modal,Pressable,TextInput} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import * as Yup from "yup";
+import { Formik } from 'formik';
+
 
 import { icons, COLORS, FONTS, SIZES } from '../constants';
 
@@ -29,6 +18,29 @@ const Restaurants = ({route, navigation}) => {
     const [name, onChangeName] = React.useState("name");
     const [description, onChangeDescription] = React.useState("Description");
     const [price, onChangePrice] = React.useState(0);
+
+    const inputStyle = {
+        borderWidth: 1,
+        borderColor: '#4e4e4e',
+        padding: 12,
+        marginBottom: 5,
+      };
+
+    const initialValuesAddProduct ={
+        name :'',
+        description:'',
+        price: 0,
+
+    };
+
+    const modalAddProducSchema = Yup.object().shape({
+        name: Yup.string().required('Champs nom du produit requis'),
+        description: Yup.string(),
+        price: Yup.number().positive().required('Champs prix requis !'),
+    
+    });
+
+
 
 
 
@@ -124,27 +136,55 @@ const Restaurants = ({route, navigation}) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Product Informations</Text>
+            <Formik
+        initialValues={initialValuesAddProduct}
+        validationSchema={modalAddProducSchema}
+        onSubmit={values => addProduct(values.name,values.description,values.price)}
+       >
+        {({ values, handleChange, errors, setFieldTouched, touched, isValid, handleSubmit }) => (
+          <View style={styles.formContainer}>
             <TextInput
-                style={styles.input}
-                onChangeText={onChangeName}
-                value={name}
+              value={values.name}
+              style={inputStyle}
+              onChangeText={handleChange('name')}
+              onBlur={() => setFieldTouched('name')}
+              placeholder="Name"
             />
+            {touched.name && errors.name &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.name}</Text>
+            }            
             <TextInput
-                style={styles.input}
-                onChangeText={onChangeDescription}
-                value={description}
+              value={values.description}
+              style={inputStyle}
+              onChangeText={handleChange('description')}
+              onBlur={() => setFieldTouched('description')}
+              placeholder="description"
             />
+            {touched.description && errors.description &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.description}</Text>
+            }
             <TextInput
-                style={styles.input}
-                onChangeText={onChangePrice}
-                value={price}
+              value={values.price}
+              style={inputStyle}
+              onChangeText={handleChange('price')}
+              placeholder="price"
+              onBlur={() => setFieldTouched('price')}
+              
             />
+            {touched.price && errors.price &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.price}</Text>
+            }
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => addProduct(name,description,price)}
+              onPress={handleSubmit}
             >
               <Text style={styles.textStyle}>ADD</Text>
             </Pressable>
+          </View>
+          
+        )}
+      </Formik>
+            
           </View>
         </View>
       </Modal>

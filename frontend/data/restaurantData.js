@@ -61,20 +61,7 @@ export let restaurantData = [
             name: "Amy"
         },
         menu: [
-            {
-                menuId: 1,
-                name: "Crispy Chicken Burger",
-                description: "Burger with crispy chicken, cheese and lettuce",
-                price: 10
-            },
-            
-            
-            {
-                menuId: 3,
-                name: "Crispy Baked French Fries",
-                description: "Crispy Baked French Fries",
-                price: 8
-            }
+           
         ]
     },
     {
@@ -94,30 +81,7 @@ export let restaurantData = [
             name: "Jackson"
         },
         menu: [
-            {
-                menuId: 4,
-                name: "Hawaiian Pizza",
-                description: "Canadian bacon, homemade pizza crust, pizza sauce",
-                price: 15
-            },
-            {
-                menuId: 5,
-                name: "Tomato & Basil Pizza",
-                description: "Fresh tomatoes, aromatic basil pesto and melted bocconcini",
-                price: 20
-            },
-            {
-                menuId: 6,
-                name: "Tomato Pasta",
-                description: "Pasta with fresh tomatoes",
-                price: 10
-            },
-            {
-                menuId: 7,
-                name: "Mediterranean Chopped Salad ",
-                description: "Finely chopped lettuce, tomatoes, cucumbers",
-                price: 10
-            }
+            
         ]
     },
     
@@ -138,12 +102,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+           
         ]
     },
 
@@ -164,12 +123,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+            
         ]
     },
 
@@ -190,12 +144,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+            
         ]
     },
 
@@ -216,12 +165,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                photo: images.sushi,
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+            
         ]
     },
 
@@ -242,12 +186,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+           
         ]
     },
     {
@@ -267,12 +206,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+            
         ]
     },
 
@@ -293,12 +227,7 @@ export let restaurantData = [
             name: "Ahmad"
         },
         menu: [
-            {
-                menuId: 9,
-                name: "Sushi sets",
-                description: "Fresh salmon, sushi rice, fresh juicy avocado",
-                price: 50
-            }
+            
         ]
     },
     
