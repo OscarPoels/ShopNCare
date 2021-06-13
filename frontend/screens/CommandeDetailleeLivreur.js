@@ -20,11 +20,8 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
     const [itemIdx, setItemIdx] = useState();
 
     React.useEffect(() => {
-        console.log('\nHola');
-        console.log(route.params);
         let idx = route.params;
         setItemIdx(idx);
-        console.log(itemIdx);
     })
 
     let [state, setState] = useState();
@@ -71,25 +68,25 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
                 </View>
                 <View style={{marginTop: SIZES.padding * 2 ,borderWidth: 0}}>
                     <View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
+                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
                         borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                         elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Magasin</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Informations du magasin</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding * 14}}>Magasin</Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Informations du magasin</Text>
                     </View>
                     <View style={{height: '40%', width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 6,
+                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
                         borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                         elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Courses</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Les détails de la liste de course</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*14 + 2}}>Courses</Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Les détails de la liste de course</Text>
                     </View>
                     <View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 11,
+                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
                         borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                         elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Client</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Infos client</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*16 + 4}}>Client</Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Infos client </Text>
                     </View>
                     <TouchableWithoutFeedback onPressIn={()=>animateIn()} onPressOut={()=>animateOut()}>
                         <Animated.View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
