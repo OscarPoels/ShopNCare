@@ -125,7 +125,7 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.cutlery}
+                            source={icons.shopping_basket}
                             resizeMode="contain"
                             style={{
                                 width: 25,
@@ -148,7 +148,7 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.search}
+                            source={icons.homelogo}
                             resizeMode="contain"
                             style={{
                                 width: 25,
@@ -171,7 +171,7 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.like}
+                            source={icons.user}
                             resizeMode="contain"
                             style={{
                                 width: 25,
@@ -194,7 +194,7 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.user}
+                            source={icons.more}
                             resizeMode="contain"
                             style={{
                                 width: 25,

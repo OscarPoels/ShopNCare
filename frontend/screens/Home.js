@@ -52,15 +52,15 @@ const Home = ({navigation}) => {
                 }}            
             >
                 <Image 
-                    source={icons.nearby}
+                    source={icons.shopncare}
                     resizeMode="contain"
                     style={{
-                        width: 30,
-                        height: 30
+                        width: 60,
+                        height: 60
                     }}
                 />
 
-            </TouchableOpacity>
+            </TouchableOpacity >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{
                         width: "70%",
@@ -77,10 +77,14 @@ const Home = ({navigation}) => {
                 width: 50,
                 height: "100%",
                 paddingRight: SIZES.padding * 2,
-                justifyContent: "center"
-            }}>
+                justifyContent: "center",
+            }}
+            onPress = {() => navigation.navigate("OrderDelivery", {
+                restaurant: restaurants[0],
+                currentLocation: currentLocation
+            })}>
                 <Image
-                    source={icons.location}
+                    source={icons.nearby}
                     resizeMode="contain"
                     style={{
                         width: 30,
@@ -138,8 +142,8 @@ const Home = ({navigation}) => {
         }
         return(
             <View style={{ padding: SIZES.padding * 2}}>
-                <Text style={{...FONTS.h1}}>Main</Text>
-                <Text style={{...FONTS.h1}}>Categories</Text>
+                <Text style={{...FONTS.h1}}>Bienvenue</Text>
+                <Text style={{...FONTS.h1}}>Client</Text>
                 <FlatList
                     data={categories}
                     horizontal

@@ -1,24 +1,50 @@
 import React from 'react';
-import {
-    SafeAreaView,
-    Platform,
-    View, 
-    Text,
-    StyleSheet,
-    Animated,
-    TouchableOpacity,
-    Image,
-} from 'react-native';
+import {SafeAreaView,Platform,View, Text,StyleSheet,Animated,TouchableOpacity,Image,Modal,Pressable,TextInput} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import * as Yup from "yup";
+import { Formik } from 'formik';
+
 
 import { icons, COLORS, FONTS, SIZES } from '../constants';
 
 const Restaurants = ({route, navigation}) => {
 
+    const [modalVisible, setModalVisible] = React.useState(false);
     const scrollX = new Animated.Value(0);
     const [restaurant, setRestaurant] = React.useState(null);
     const [currentLocation, setCurrentLocation] = React.useState(null);
     const [orderItems, setOrderItems] = React.useState([]);
+ 
+
+    const inputStyle = {
+        borderWidth: 1,
+        borderColor: '#4e4e4e',
+        padding: 12,
+        marginBottom: 5,
+      };
+
+    const initialValuesAddProduct ={
+        name :'',
+        description:'',
+        price: 0,
+
+    };
+
+    const modalAddProducSchema = Yup.object().shape({
+        name: Yup.string().required('Champs nom du produit requis'),
+        description: Yup.string(),
+        price: Yup.number().positive().required('Champs prix requis !'),
+    
+    });
+
+
+
+
+
+
+
+    
 
     React.useEffect(() => {
         let { item, currentLocation } = route.params;
@@ -68,6 +94,21 @@ const Restaurants = ({route, navigation}) => {
         }
     }
 
+    function addProduct(name, description, price) {
+        restaurant?.menu.push(
+            {
+                menuId: restaurant?.menu?.length,
+                name: name,
+                description: description,
+                price: parseInt(price),
+            },
+        )
+        setRestaurant();
+        setModalVisible(false);
+
+        console.log(restaurant?.menu)
+    }
+
     function getBasketItemCount() {
         let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0);
         return itemCount;
@@ -76,6 +117,77 @@ const Restaurants = ({route, navigation}) => {
     function sumOrder(){
         let total = orderItems.reduce((a, b)=> a + (b.qty * b.price || 0),0)
         return total.toFixed(2);
+    }
+
+    function renderModalAddProduct(){
+        return (
+            <View style={styles.centeredView}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Product Informations</Text>
+            <Formik
+        initialValues={initialValuesAddProduct}
+        validationSchema={modalAddProducSchema}
+        onSubmit={values => addProduct(values.name,values.description,values.price)}
+       >
+        {({ values, handleChange, errors, setFieldTouched, touched, isValid, handleSubmit }) => (
+          <View style={styles.formContainer}>
+            <TextInput
+              value={values.name}
+              style={inputStyle}
+              onChangeText={handleChange('name')}
+              onBlur={() => setFieldTouched('name')}
+              placeholder="Name"
+            />
+            {touched.name && errors.name &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.name}</Text>
+            }            
+            <TextInput
+              value={values.description}
+              style={inputStyle}
+              onChangeText={handleChange('description')}
+              onBlur={() => setFieldTouched('description')}
+              placeholder="description"
+            />
+            {touched.description && errors.description &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.description}</Text>
+            }
+            <TextInput
+              value={values.price}
+              style={inputStyle}
+              onChangeText={handleChange('price')}
+              placeholder="price"
+              onBlur={() => setFieldTouched('price')}
+              
+            />
+            {touched.price && errors.price &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.price}</Text>
+            }
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.textStyle}>ADD</Text>
+            </Pressable>
+          </View>
+          
+        )}
+      </Formik>
+            
+          </View>
+        </View>
+      </Modal>
+    </View>
+        )
     }
 
     function renderHeader(){
@@ -144,12 +256,8 @@ const Restaurants = ({route, navigation}) => {
 
     function renderFoodInfo(){
         return (
-            <Animated.ScrollView
-                horizontal
-                pagingEnabled
-                scrollEventThrottle={16}
-                snapToAlignment="center"
-                showsHorizontalScrollIndicator={false}
+            <ScrollView
+                
                 onScroll={Animated.event([
                     { nativeEvent: { contentOffset: { x: scrollX } } } 
                 ], { useNativeDriver: false })}
@@ -159,29 +267,61 @@ const Restaurants = ({route, navigation}) => {
                         <View
                             key={`menu-${index}`}
                             style={{
-                                alignItems: "center"
+                                flex:1,
+                                alignItems: "center",
+                                justifyContent: "center",
+                                paddingVertical: SIZES.padding *2,
+                                paddingHorizontal: SIZES.padding *3,
+                                
+                                
+                               
+
+
                             }}
                         
                         >
-                            <View style={{ height: SIZES.height *0.35}}>
+
+
+                            <View style={{ height: SIZES.height *0.10}}>
                                 {/* Food Image */}
-                                <Image
-                                    source={item.photo}
-                                    resizeMode="cover"
-                                    style={{
-                                        width: SIZES.width,
-                                        height: "100%"
-                                    }}
-                                />
                                 <View style={{
+                                    flexDirection:"row",
+                                    justifyContent: 'space-between',
+                                    paddingVertical: SIZES.padding*2, 
+                                    paddingHorizontal: SIZES.padding *3,
+                                    borderBottomColor: COLORS.lightGray2,
+                                    borderBottomWidth: 1,
+                                
+                            }}>
+                        
+                        <View style={{
+                                    flex:1,
                                     position: 'absolute',
-                                    bottom:-20,
                                     width: SIZES.width,
+                                    alignItems:"flex-start",
+                                    marginLeft:-80,
                                     height: 50,
-                                    justifyContent: "center",
                                     flexDirection: 'row'
+                                    
                                 }}>
-                                    <TouchableOpacity 
+                                    <Text style={{ marginVertical: 10, textAlign: "left",...FONTS.h2}}>{item.name} - {item.price.toFixed(2)}</Text>
+
+        
+
+                                </View>
+                       
+                    </View>
+
+                    <View style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        paddingVertical: SIZES.padding *2,
+                        paddingHorizontal: SIZES.padding *3,
+                        
+                    }}>
+                        
+                        <View style={{ flexDirection: 'row'}}>
+                        <TouchableOpacity 
                                     onPress={() => editOrder("-", item.menuId, item.price)}   
                                     style={{
                                         width: 50,
@@ -214,103 +354,50 @@ const Restaurants = ({route, navigation}) => {
                                         >
                                         <Text style={{...FONTS.h1}}>+</Text>
                                     </TouchableOpacity>
+                            
+                    </View>
+                   
+                     
+                            
+                    </View>           
+                                
+                                
+                            </View>                        
 
-                                </View>
-                            </View>
-
-                            {/* Name & Description */}
-                            <View style={{
-                                width: SIZES.width,
-                                alignItems: 'center',
-                                marginTop: 15,
-                                paddingHorizontal: SIZES.padding*2
-                            }}>
-                                <Text style={{ marginVertical: 10, textAlign: "center",...FONTS.h2}}>{item.name} - {item.price.toFixed(2)}</Text>
-                                <Text style={{...FONTS.body3, textAlign:'center'}}>{item.description}</Text>
-
-                            </View>
-
-                            <View style={{
-                                flexDirection:'row',
-                                marginTop: 10,
-                            }}>
-                                <Image
-                                    source={icons.fire}
-                                    resizeMode="contain"
-                                    style={{
-                                        width: 20,
-                                        height: 20,
-                                        marginRight:10
-                                    }}
-                                />
-                                <Text style={{...FONTS.body3, color:COLORS.darkgray}}>
-                                    {item.calories.toFixed(2)} Cal
-                                </Text>
-                            </View>
+                            
                         </View>
                     ))
                 }
+                 <View style={{
+                     flex:1,
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingVertical: SIZES.padding *2,
+                        paddingHorizontal: SIZES.padding *3,
+                        
+                    }}>
+                    <Pressable
+                        style={[styles.button, styles.buttonOpen]}
+                        onPress={() => setModalVisible(true)}
+                    >
+                        <Text style={styles.textStyle}>+ADD PRODUCT</Text>
+                    </Pressable>
+                
+                </View>
 
-            </Animated.ScrollView>
+            </ScrollView>
+            
         )
     }
+
+  
     
-    function renderDots() {
-        const dotPosition = Animated.divide(scrollX, SIZES.width)
-
-        return (
-            <View
-                style={{
-                    flexDirection: 'row',
-                    alignItems: "center",
-                    justifyContent: 'center',
-                    height: SIZES.padding
-                }}
-            >
-                { 
-                restaurant?.menu.map((item,index) => {
-                    const opacity = dotPosition.interpolate({
-                        inputRange: [index-1, index, index+1],
-                        outputRange: [0.3, 1, 0.3],
-                        extrapolate: "clamp"
-                    });
-
-                    const dotSize = dotPosition.interpolate({
-                        inputRange: [index - 1, index, index + 1],
-                        outputRange: [ SIZES.base*0.8, 10, SIZES.base*0.8],
-                        extrapolate: "clamp"
-                    });
-
-                    const dotColor = dotPosition.interpolate({
-                        inputRange: [index - 1, index, index + 1],
-                        outputRange: [COLORS.darkgray, COLORS.primary, COLORS.darkgray],
-                        extrapolate: "clamp"
-                    });
-
-                    return (
-                        <Animated.View
-                        key={`dot-${index}`}
-                        opacity={opacity}
-                        style={{
-                            borderRadius: SIZES.radius,
-                            marginHorizontal: 6,
-                            width: dotSize,
-                            height: dotSize,
-                            backgroundColor: dotColor
-                        }}
-                        >
-
-                        </Animated.View>
-                    )
-                })
-                }
-            </View>
-        )
-    }
+    
     function renderOrder(){
         return(
             <View>
-                { renderDots() }
+            
                 <View style={{
                     backgroundColor: COLORS.white,
                     borderTopLeftRadius: 40,
@@ -324,7 +411,7 @@ const Restaurants = ({route, navigation}) => {
                         borderBottomColor: COLORS.lightGray2,
                         borderBottomWidth: 1
                     }}>
-                        <Text style={{...FONTS.h3}}> { getBasketItemCount() } Items in the Cart</Text>
+                        <Text style={{...FONTS.h3}}> { getBasketItemCount() } Items. ShopNCare estimation :</Text>
                         <Text style={{...FONTS.h3}}> ${ sumOrder()}</Text>
                     </View>
 
@@ -407,6 +494,7 @@ const Restaurants = ({route, navigation}) => {
         <SafeAreaView style={styles.container}>
             { renderHeader() }
             { renderFoodInfo() }
+            { renderModalAddProduct() }
             { renderOrder() }
         </SafeAreaView>
     );
@@ -416,6 +504,53 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.lightGray2
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+      button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+      },
+      buttonOpen: {
+        backgroundColor: COLORS.primary,
+      },
+      buttonClose: {
+        backgroundColor: COLORS.primary,
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      },
+      input: {
+        height: 40,
+        width: 100,
+        margin: 12,
+        borderWidth: 1,
+      },
 })
 export default Restaurants;

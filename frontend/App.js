@@ -12,6 +12,13 @@ import {
   ListeCommandesLivreur,
   CommandeDetailleeLivreur,
   ApercuDetailleLivreur,
+  Welcome,
+  WelcomeInformations,
+  Login,
+  LoginOrSignIn,
+  SignUp,
+  ResetPassword,
+  ResetPasswordEmail
 } from './screens'
 
 const Stack = createStackNavigator();
@@ -37,7 +44,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-          initialRouteName='ListeCommandesLivreur'
+          initialRouteName='Welcome'
           screenOptions={{
             headerShown: false,
           }}>
@@ -47,6 +54,18 @@ const App = () => {
         <Stack.Screen name='ListeCommandesLivreur' component={ListeCommandesLivreur} />
         <Stack.Screen name='CommandeDetailleeLivreur' component={CommandeDetailleeLivreur} />
         <Stack.Screen name='ApercuDetailleLivreur' component={ApercuDetailleLivreur} />
+        <Stack.Screen name='Welcome' component={Welcome} />
+        <Stack.Screen name='WelcomeInformations' component={WelcomeInformations} />
+        <Stack.Screen name='LoginOrSignIn' component={LoginOrSignIn} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='ResetPasswordEmail' component={ResetPasswordEmail} />
+
+
+
+
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )
