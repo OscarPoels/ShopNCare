@@ -5,12 +5,13 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import Tabs from './navigation/tabs';
-import { 
+import {
   Home,
   OrderDelivery,
   Restaurants,
   ListeCommandesLivreur,
   CommandeDetailleeLivreur,
+  ApercuDetailleLivreur,
 } from './screens'
 
 const Stack = createStackNavigator();
@@ -45,6 +46,7 @@ const App = () => {
         <Stack.Screen name='Restaurants' component={Restaurants} />
         <Stack.Screen name='ListeCommandesLivreur' component={ListeCommandesLivreur} />
         <Stack.Screen name='CommandeDetailleeLivreur' component={CommandeDetailleeLivreur} />
+        <Stack.Screen name='ApercuDetailleLivreur' component={ApercuDetailleLivreur} />
       </Stack.Navigator>
     </NavigationContainer>
   )

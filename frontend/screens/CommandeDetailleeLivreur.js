@@ -8,7 +8,7 @@ import {
     Animated,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Image,
+    Image, FlatList,
 } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
@@ -40,66 +40,96 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
         Animated.timing(state.animatePress, {toValue: state.toValueOut, duration: state.animDuration, useNativeDriver: true}).start();
     }
 
-    var commandes = [];
-    for(let i = 1; i <= 4; i++){
-        commandes.push(
-            <TouchableWithoutFeedback key={i-1} onPressIn={()=>animateIn(i-1)} onPressOut={()=>animateOut(i-1)}>
-                <Animated.View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                    paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
-                    borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                    elevation: 3,
-                    transform: [
-                        {
-                            scale: state.animatePress[i-1]
-                        }
-                    ]}}>
-                    <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Commande {i}</Text>
-                    <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Nombre de produits</Text>
-                </Animated.View>
-            </TouchableWithoutFeedback>
-        )
+    var divisionsId = [
+        {
+            id: 0
+        },
+        {
+            id: 1
+        },
+        {
+            id: 2
+        },
+        {
+            id: 3
+        }
+    ];
+
+    var divisions = [];
+
+    divisions.push(
+        <View key={0}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding}}>
+            <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+                paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
+                borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
+                elevation: 3, backgroundColor: 'white'}}>
+                <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding * 14}}>Magasin</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin </Text>
+            </View>
+        </View>
+    );
+
+    divisions.push(
+        <View key={1}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding}}>
+            <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+                paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
+                borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
+                elevation: 3, backgroundColor: 'white'}}>
+                <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*14 + 2}}>Courses</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course</Text>
+            </View>
+        </View>
+    );
+
+    divisions.push(
+        <View key={2}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding}}>
+            <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+                paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
+                borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
+                elevation: 3, backgroundColor: 'white'}}>
+                <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*16 + 4}}>Client</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client </Text>
+            </View>
+        </View>
+    );
+
+    divisions.push(
+        <TouchableWithoutFeedback key={3} onPressIn={()=>animateIn()} onPressOut={()=>animateOut()}>
+            <Animated.View style={{marginBottom: SIZES.padding * 2, borderWidth: 2, borderColor: 'white',
+                paddingVertical: SIZES.padding * 2,
+                borderRadius: 30, backgroundColor: '#bd0101',
+                transform: [
+                    {
+                        scale: state.animatePress
+                    }
+                ]}}>
+                <Text style={{color: 'white', paddingHorizontal: SIZES.padding*12}}>Trajet</Text>
+            </Animated.View>
+        </TouchableWithoutFeedback>
+    );
+
+    const renderItem = ({ item }) => {
+        return (divisions[item.id])
     }
+
 
     return (
         <SafeAreaView>
             <View style={styles.mainStyle}>
                 <View style={styles.bonjourLivreurView}>
-                    <Text style={styles.bonjourLivreurText}>Commandes {itemIdx}</Text>
+                    <Text style={styles.bonjourLivreurText}>Commande {itemIdx}</Text>
                 </View>
-                <View style={{marginTop: SIZES.padding * 2 ,borderWidth: 0}}>
-                    <View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
-                        borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                        elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding * 14}}>Magasin</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Informations du magasin</Text>
-                    </View>
-                    <View style={{height: '40%', width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
-                        borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                        elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*14 + 2}}>Courses</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Les détails de la liste de course</Text>
-                    </View>
-                    <View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
-                        borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                        elevation: 3}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*16 + 4}}>Client</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Infos client </Text>
-                    </View>
-                    <TouchableWithoutFeedback onPressIn={()=>animateIn()} onPressOut={()=>animateOut()}>
-                        <Animated.View style={{width: '70%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                            paddingVertical: SIZES.padding * 2, paddingHorizontal: SIZES.padding * 11,
-                            borderRadius: 30, backgroundColor: '#bd0101',
-                            transform: [
-                                {
-                                    scale: state.animatePress
-                                }
-                            ]}}>
-                            <Text style={{color: 'white'}}>Trajet</Text>
-                        </Animated.View>
-                    </TouchableWithoutFeedback>
+                <View style={styles.redBackground}></View>
+                <View style={{marginTop: SIZES.padding * 2, marginBottom: SIZES.padding*23 ,borderWidth: 0}}>
+                    <FlatList
+                        data={divisionsId}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={item => `${item.id}`}
+                        renderItem={renderItem}
+                        contentContainerStyle = {{
+                            overflow: 'scroll',
+                        }}
+                    />
                 </View>
             </View>
         </SafeAreaView>
@@ -119,14 +149,15 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     redBackground : {
-        position: 'relative',
-        top: 180,
-        borderTopRightRadius: 50,
-        borderBottomRightRadius: 50,
+        position: 'absolute',
+        top: 200,
+        right: 0,
+        borderTopLeftRadius: 50,
+        borderBottomLeftRadius: 50,
         backgroundColor: '#bd0101',
-        height: '70%',
+        height: '63%',
         width: '20%',
-        zIndex: -1
+        zIndex: -5
     },
     bonjourLivreurView : {
         position: 'relative',

@@ -46,26 +46,26 @@ const ListeCommandesLivreur = ({route, navigation}) => {
     }
 
     function onPressGoTo (i) {
-        navigation.navigate('CommandeDetailleeLivreur', i);
+        navigation.navigate('ApercuDetailleLivreur', i);
     }
 
     const renderItem = ({ item }) => {
         return (
             <View style={{paddingRight: SIZES.padding, paddingTop: 1, paddingLeft: 1}}>
-            <TouchableWithoutFeedback onPress={()=>onPressGoTo(item.id)} onPressIn={()=>animateIn(item.id)} onPressOut={()=>animateOut(item.id)}>
-                <Animated.View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                    paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
-                    borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                    elevation: 4, zIndex: 5, backgroundColor: 'white',
-                    transform: [
-                        {
-                            scale: state.animatePress[item.id-1]
-                        }
-                    ]}}>
-                    <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Commande {item.id}</Text>
-                    <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Nombre de produits</Text>
-                </Animated.View>
-            </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={()=>onPressGoTo(item.id)} onPressIn={()=>animateIn(item.id)} onPressOut={()=>animateOut(item.id)}>
+                    <Animated.View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+                        paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, paddingRight: SIZES.padding * 9,
+                        borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
+                        elevation: 4, zIndex: 5, backgroundColor: 'white',
+                        transform: [
+                            {
+                                scale: state.animatePress[item.id-1]
+                            }
+                        ]}}>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold'}}>Commande {item.id}</Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8}}>Nombre de produits</Text>
+                    </Animated.View>
+                </TouchableWithoutFeedback>
             </View>
         )
     }
