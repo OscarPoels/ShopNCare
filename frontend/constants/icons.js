@@ -20,11 +20,6 @@ export const bricolage = require('../assets/icons/bricolage.png');
 export const more = require('../assets/icons/more.png');
 export const shopncare = require('../assets/icons/logoDetoure2.png');
 
-
-
-
-
-
 export default {
     back,
     car,

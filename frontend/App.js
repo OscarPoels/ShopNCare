@@ -8,7 +8,14 @@ import Tabs from './navigation/tabs';
 import { 
   Home,
   OrderDelivery,
-  Restaurants
+  Restaurants,
+  Welcome,
+  WelcomeInformations,
+  Login,
+  LoginOrSignIn,
+  SignUp,
+  ResetPassword,
+  ResetPasswordEmail
 } from './screens'
 
 const Stack = createStackNavigator();
@@ -34,13 +41,25 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-          initialRouteName='Home'
+          initialRouteName='Welcome'
           screenOptions={{
             headerShown: false,
           }}>
         <Stack.Screen name='Home' component={Tabs} />
         <Stack.Screen name='OrderDelivery' component={OrderDelivery} />
         <Stack.Screen name='Restaurants' component={Restaurants} />
+        <Stack.Screen name='Welcome' component={Welcome} />
+        <Stack.Screen name='WelcomeInformations' component={WelcomeInformations} />
+        <Stack.Screen name='LoginOrSignIn' component={LoginOrSignIn} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='ResetPasswordEmail' component={ResetPasswordEmail} />
+
+
+
+
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )

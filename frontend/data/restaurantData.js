@@ -3,8 +3,8 @@ import { icons, images} from '../constants'
 export const initialCurrentLocation = {
     streetName: "Paris",
     gps: {
-        latitude: -1.232455,
-        longitude: 36.878324
+        latitude: 48.866667,
+        longitude: 2.333333
     }
 }
 
@@ -53,8 +53,8 @@ export let restaurantData = [
         photo: images.burger_restaurant,
         duration: "30 - 45 min",
         location: {
-            latitude: -1.219648,
-            longitude: 36.888314,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_1,
@@ -73,8 +73,8 @@ export let restaurantData = [
         photo: images.pizza_restaurant,
         duration: "15 - 20 min",
         location: {
-            latitude: -1.213126,
-            longitude: 36.839998,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_2,
@@ -94,8 +94,8 @@ export let restaurantData = [
         photo: images.japanese_restaurant,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.316393,
-            longitude: 36.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -115,8 +115,8 @@ export let restaurantData = [
         photo: images.pharmacie,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.906393,
-            longitude: 47.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -136,8 +136,8 @@ export let restaurantData = [
         photo: images.ikea,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.316393,
-            longitude: 36.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -157,8 +157,8 @@ export let restaurantData = [
         photo: images.bricorama,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.316393,
-            longitude: 36.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -178,8 +178,8 @@ export let restaurantData = [
         photo: images.markett,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.316393,
-            longitude: 36.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -198,8 +198,8 @@ export let restaurantData = [
         photo: images.carrefour,
         duration: "10 - 15 min",
         location: {
-            latitude: -1.316393,
-            longitude: 36.834484,
+            latitude: 48.866667,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
@@ -220,7 +220,7 @@ export let restaurantData = [
         duration: "10 - 15 min",
         location: {
             latitude: -1.316393,
-            longitude: 36.834484,
+            longitude: 2.333333,
         },
         courier: {
             avatar: images.avatar_4,
