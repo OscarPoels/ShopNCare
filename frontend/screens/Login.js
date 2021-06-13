@@ -1,10 +1,10 @@
 import React from 'react'
-import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Pressable,Image, TouchableOpacity} from 'react-native';
 import {RedButton} from "../components/RedButton";
 import * as Yup from "yup";
 import {Formik} from 'formik';
 import {TextInput} from "react-native-gesture-handler";
-import {TouchableOpacity} from "react-native-web";
+import { icons, COLORS, FONTS, SIZES } from '../constants';
 
 const initialValuesLogin = {
     email: '',
@@ -17,12 +17,33 @@ const loginSchema = Yup.object().shape({
 });
 
 
-class Login extends React.Component {
+const Login = ({navigation}) => {
 
 
-    render() {
+  
         return (
             <View style={styles.container}>
+                <TouchableOpacity
+                    style={{
+                        paddingLeft: SIZES.padding*2,
+                        width: 50,
+                        position:"absolute",
+                        top:50,
+                        left:"5%",
+                        
+                    }}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Image
+                        source ={icons.back}
+                        resizeMode="contain"
+                        style={{
+                            width: 30,
+                            height: 30,
+                            
+                        }}
+                    />
+                </TouchableOpacity>
                 <Text style={{fontSize: 35}}>
                     Se connecter
                 </Text>
@@ -60,24 +81,24 @@ class Login extends React.Component {
                             <RedButton
                                 buttonText="Se Connecter"
                                 buttonStyle={{marginTop: 50}}
-                                onPress={handleSubmit}
+                                onPress={() =>navigation.navigate("Home")}
                             />
                         </View>
 
                     )}
                 </Formik>
-                    <Text style={{fontSize: 12, marginTop: 50, color:'#7C7D7E'}} onPress={() =>console.log('okok')}>
+                    <Text style={{fontSize: 12, marginTop: 50, color:'#7C7D7E'}} onPress={() =>navigation.navigate("ResetPasswordEmail")}>
                         Mot de passe oublié ?
                     </Text>
 
                 <Text style={{fontSize: 12, bottom: 50, position: 'absolute'}}>
-                    Vous n'avez pas de compte ? <Text style={{fontSize: 12, marginTop: 50, color:'#BD0404'}} onPress={() =>console.log('okok')}>Inscrivez-vous</Text>
+                    Vous n'avez pas de compte ? <Text style={{fontSize: 12, marginTop: 50, color:'#BD0404'}} onPress={() =>navigation.navigate("SignUp")}>Inscrivez-vous</Text>
                 </Text>
             </View>
         )
     }
 
-}
+
 
 
 const styles = StyleSheet.create({

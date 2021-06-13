@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Pressable, Image, TouchableOpacity} from 'react-native';
 import {RedButton} from "../components/RedButton";
 import * as Yup from "yup";
 import {Formik} from 'formik';
 import {TextInput} from "react-native-gesture-handler";
-import {TouchableOpacity} from "react-native-web";
+import { icons, COLORS, FONTS, SIZES } from '../constants';
+
 
 const initialValuesResetPasswordEmail = {
     email: ''
@@ -15,12 +16,32 @@ const resetPasswordEmailSchema = Yup.object().shape({
 });
 
 
-class ResetPasswordEmail extends React.Component {
+const ResetPasswordEmail = ({navigation}) => {
 
 
-    render() {
+
         return (
             <View style={styles.container}>
+                <TouchableOpacity
+                    style={{
+                        paddingLeft: SIZES.padding*2,
+                        width: 50,
+                        position:"absolute",
+                        top:50,
+                        left:"5%",
+                    }}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Image
+                        source ={icons.back}
+                        resizeMode="contain"
+                        style={{
+                            width: 30,
+                            height: 30,
+                            
+                        }}
+                    />
+                </TouchableOpacity>
                 <Text style={{fontSize: 35, textAlign: 'center', width: '80%'}}>
                     Réinistialiser votre mot de passe
                 </Text>
@@ -57,7 +78,7 @@ class ResetPasswordEmail extends React.Component {
         )
     }
 
-}
+
 
 
 const styles = StyleSheet.create({

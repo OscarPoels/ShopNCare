@@ -1,10 +1,10 @@
 import React from 'react'
-import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Pressable, TouchableOpacity, Image} from 'react-native';
 import {RedButton} from "../components/RedButton";
 import * as Yup from "yup";
 import {Formik} from 'formik';
 import {TextInput} from "react-native-gesture-handler";
-import {TouchableOpacity} from "react-native-web";
+
 
 const initialValuesResetPassword = {
     password: '',
@@ -17,10 +17,9 @@ const resetPasswordSchema = Yup.object().shape({
 });
 
 
-class ResetPassword extends React.Component {
+const ResetPassword = ({navigation}) =>  {
 
 
-    render() {
         return (
             <View style={styles.container}>
                 <Text style={{fontSize: 35, textAlign: 'center', width: '80%'}}>
@@ -71,7 +70,7 @@ class ResetPassword extends React.Component {
         )
     }
 
-}
+
 
 
 const styles = StyleSheet.create({

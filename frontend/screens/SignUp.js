@@ -1,9 +1,10 @@
 import React from 'react'
-import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Pressable, TouchableOpacity, Image} from 'react-native';
 import {RedButton} from "../components/RedButton";
 import * as Yup from "yup";
 import {Formik} from 'formik';
 import {TextInput} from "react-native-gesture-handler";
+import { icons, COLORS, FONTS, SIZES } from '../constants';
 
 const initialValuesSignUp = {
     name: '',
@@ -24,12 +25,32 @@ const signUpSchema = Yup.object().shape({
 });
 
 
-class SignUp extends React.Component {
+const SignUp = ({navigation}) =>  {
 
 
-    render() {
+
         return (
             <View style={styles.container}>
+                <TouchableOpacity
+                    style={{
+                        paddingLeft: SIZES.padding*2,
+                        width: 50,
+                        position:"absolute",
+                        top:50,
+                        left:"5%",
+                    }}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Image
+                        source ={icons.back}
+                        resizeMode="contain"
+                        style={{
+                            width: 30,
+                            height: 30,
+                            
+                        }}
+                    />
+                </TouchableOpacity>
                 <Text style={{fontSize: 35}}>
                     Inscription
                 </Text>
@@ -106,13 +127,13 @@ class SignUp extends React.Component {
                 </Formik>
 
                 <Text style={{fontSize: 12, bottom: 50, position: 'absolute'}}>
-                    Vous avez déjà un compte ? <Text style={{fontSize: 12, marginTop: 50, color:'#BD0404'}} onPress={() =>console.log('okok')}>Connectez-vous</Text>
+                    Vous avez déjà un compte ? <Text style={{fontSize: 12, marginTop: 50, color:'#BD0404'}} onPress={() =>navigation.navigate("Login")}>Connectez-vous</Text>
                 </Text>
             </View>
         )
     }
 
-}
+
 
 
 const styles = StyleSheet.create({

@@ -15,7 +15,7 @@ import {
   LoginOrSignIn,
   SignUp,
   ResetPassword,
-  ResetPasswordMail
+  ResetPasswordEmail
 } from './screens'
 
 const Stack = createStackNavigator();
@@ -51,6 +51,12 @@ const App = () => {
         <Stack.Screen name='Welcome' component={Welcome} />
         <Stack.Screen name='WelcomeInformations' component={WelcomeInformations} />
         <Stack.Screen name='LoginOrSignIn' component={LoginOrSignIn} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='ResetPasswordEmail' component={ResetPasswordEmail} />
+
+
+
 
 
 
