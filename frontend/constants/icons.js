@@ -35,7 +35,6 @@ export default {
     search,
     shopping_basket,
     star,
-    sushi,
     user,
     logo_snc,
     user,
