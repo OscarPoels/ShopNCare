@@ -15,9 +15,7 @@ const Restaurants = ({route, navigation}) => {
     const [restaurant, setRestaurant] = React.useState(null);
     const [currentLocation, setCurrentLocation] = React.useState(null);
     const [orderItems, setOrderItems] = React.useState([]);
-    const [name, onChangeName] = React.useState("name");
-    const [description, onChangeDescription] = React.useState("Description");
-    const [price, onChangePrice] = React.useState(0);
+ 
 
     const inputStyle = {
         borderWidth: 1,
