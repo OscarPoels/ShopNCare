@@ -58,13 +58,14 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
     var divisions = [];
 
     divisions.push(
-        <View key={0}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding}}>
+        <View key={0}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding, marginTop: SIZES.padding*2}}>
             <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
                 paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
                 borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                 elevation: 3, backgroundColor: 'white'}}>
                 <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding * 14}}>Magasin</Text>
-                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin Informations du magasin </Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Pharmacie</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>2 rue Victor Hugo</Text>
             </View>
         </View>
     );
@@ -72,11 +73,12 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
     divisions.push(
         <View key={1}  style={{paddingRight: 1, paddingTop: 1, paddingLeft: SIZES.padding}}>
             <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
+                paddingVertical: SIZES.padding * 2, paddingLeft: SIZES.padding * 6, minHeight: SIZES.padding*16,
                 borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                 elevation: 3, backgroundColor: 'white'}}>
                 <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*14 + 2}}>Courses</Text>
-                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course Les détails de la liste de course</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Doliprane x1</Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Dentifrice x1</Text>
             </View>
         </View>
     );
@@ -88,7 +90,7 @@ const CommandeDetailleeLivreur = ({route, navigation}) => {
                 borderTopLeftRadius: 30, borderBottomLeftRadius: 30, borderTopRightRadius: 15, borderBottomRightRadius: 15,
                 elevation: 3, backgroundColor: 'white'}}>
                 <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingRight: SIZES.padding*16 + 4}}>Client</Text>
-                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client Infos client </Text>
+                <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18}}>34 impasse des Acacias</Text>
             </View>
         </View>
     );

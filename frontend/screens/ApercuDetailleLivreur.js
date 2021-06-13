@@ -14,6 +14,7 @@ import {
 import { SearchBar } from 'react-native-elements';
 
 import { icons, COLORS, FONTS, SIZES } from '../constants';
+import images from "../constants/images";
 
 const ApercuDetailleLivreur = ({route, navigation}) => {
 
@@ -25,13 +26,19 @@ const ApercuDetailleLivreur = ({route, navigation}) => {
     })
 
     let [state, setState] = useState();
-    let [opacity, setOpacity] = useState(1.0);
+    let [popUpIsUp, setPopUpIsUp] = useState(false);
 
     state = {
         animatePress: new Animated.Value(1),
         toValueOut: 1,
         toValueIn: 0.95,
-        animDuration: 100
+        animDuration: 100,
+        animatePopUp: new Animated.Value(1),
+        toTop: -850
+    }
+
+    function showPopUp () {
+        Animated.timing(state.animatePopUp, {toValue: state.toTop, duration: state.animDuration*4, useNativeDriver: true}).start();
     }
 
     function animateIn () {
@@ -41,34 +48,75 @@ const ApercuDetailleLivreur = ({route, navigation}) => {
         Animated.timing(state.animatePress, {toValue: state.toValueOut, duration: state.animDuration, useNativeDriver: true}).start();
     }
 
+    function onPressGoTo (i) {
+        navigation.navigate('CommandeDetailleeLivreur', i);
+    }
+
     return (
         <SafeAreaView>
-            <View opacity={opacity} style={styles.mainStyle}>
+            <View style={styles.mainStyle}>
                 <View style={styles.bonjourLivreurView}>
-                    <Text style={styles.bonjourLivreurText}>Image Commande {itemIdx}</Text>
+                    <Image source={images.image_pharma}/>
                 </View>
-                <View style={{width: '100%', height: 310, marginTop: SIZES.padding * 10}}>
+                <View style={{width: '100%', height: 310, marginTop: -100}}>
                     <View style={{width: '100%', height: 310, borderWidth: 0,
                         paddingTop: SIZES.padding * 2, paddingLeft: SIZES.padding * 6,
                         borderTopLeftRadius: 50, borderTopRightRadius: 50,
                         backgroundColor: 'white'}}>
-                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding}}>Nom du Magasin</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding}}>Pharmacie</Text>
                         <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding*4}}>Description</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18, paddingTop: SIZES.padding}}>Courte description </Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18, paddingTop: SIZES.padding}}>Pharmacie normale </Text>
                         <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding*2}}>Adresse du client</Text>
                         <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18, paddingTop: SIZES.padding}}>34 impasse des Acacias</Text>
                         <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding*2}}>Liste de courses</Text>
-                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18, paddingVertical: SIZES.padding}}>Nombre de produits : 8</Text>
+                        <Text style={{color: '#C1C1C1', fontSize: SIZES.body4 * 0.8, maxWidth: SIZES.padding*18, paddingVertical: SIZES.padding}}>Nombre de produits : 2</Text>
                     </View>
                 </View>
-                <View style={{width: '100%', height: 150, top: 0}}>
-                    <View style={styles.redBackground}></View>
-                    <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
-                        paddingVertical: SIZES.padding, paddingLeft: SIZES.padding*8, paddingRight: SIZES.padding,
-                        borderTopLeftRadius: 50, borderBottomLeftRadius: 50, borderTopRightRadius: 15, borderBottomRightRadius: 15,
-                        elevation: 4, zIndex: 5, backgroundColor: 'white', maxWidth: '90%', right: 30,
-                        position: 'absolute', top: 35}}>
-                        <TouchableWithoutFeedback onPressIn={()=>animateIn()} onPressOut={()=>animateOut()}>
+                {
+                    popUpIsUp ?
+                        <View></View>
+                        :
+                        <View style={{width: '100%', height: 150, top: 0}}>
+                            <View style={styles.redBackground}></View>
+                            <View style={{width: '100%', marginBottom: SIZES.padding * 2, borderWidth: 0,
+                                paddingVertical: SIZES.padding, paddingLeft: SIZES.padding*8, paddingRight: SIZES.padding,
+                                borderTopLeftRadius: 50, borderBottomLeftRadius: 50, borderTopRightRadius: 15, borderBottomRightRadius: 15,
+                                elevation: 4, zIndex: 5, backgroundColor: 'white', maxWidth: '90%', right: 30,
+                                position: 'absolute', top: 35}}>
+                                <TouchableWithoutFeedback onPress={() => {setPopUpIsUp(true)}} onPress={() => showPopUp()}>
+                                    <Animated.View style={{marginVertical: 0, borderWidth: 2, borderColor: 'white',
+                                        paddingVertical: SIZES.padding*1.5, alignItems: 'center',
+                                        borderRadius: 30, backgroundColor: '#bd0101',
+                                        transform: [
+                                            {
+                                                scale: state.animatePress
+                                            }
+                                        ]}}>
+                                        <Text style={{color: 'white', paddingHorizontal: SIZES.padding*2}}>Prendre la commande</Text>
+                                    </Animated.View>
+                                </TouchableWithoutFeedback>
+                            </View>
+                        </View>
+                }
+
+
+            </View>
+            <View style={{height: '50%', width: '100%', position: 'absolute'}}>
+                <View style={{width: '100%', height: 410, marginTop: SIZES.padding * 10, elevation: 6}}>
+                    <Animated.View style={{width: '100%', height: 750, elevation: 10,
+                        paddingTop: SIZES.padding * 2,
+                        borderTopLeftRadius: 50, borderTopRightRadius: 50,
+                        backgroundColor: 'white', alignItems: 'center', top: 800,
+                        transform: [
+                            {
+                                translateY: state.animatePopUp
+                            }
+                        ]}}>
+                        <Image source={icons.logo_snc} style={{width: 200, height: 200}}/>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body2, fontWeight: 'bold', paddingTop: SIZES.padding}}>Merci</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body3, fontWeight: 'bold', paddingTop: SIZES.padding}}>Pour votre prise en charge</Text>
+                        <Text style={{color: '#4B4B4B', fontSize: SIZES.body3, fontWeight: 'bold', paddingTop: SIZES.padding, paddingBottom: SIZES.padding*2}}>de cette commande</Text>
+                        <TouchableWithoutFeedback onPress={()=>onPressGoTo(itemIdx)}>
                             <Animated.View style={{marginVertical: 0, borderWidth: 2, borderColor: 'white',
                                 paddingVertical: SIZES.padding*1.5, alignItems: 'center',
                                 borderRadius: 30, backgroundColor: '#bd0101',
@@ -77,11 +125,10 @@ const ApercuDetailleLivreur = ({route, navigation}) => {
                                         scale: state.animatePress
                                     }
                                 ]}}>
-                                <Text style={{color: 'white', paddingHorizontal: SIZES.padding*2}}
-                                onPress={() => {opacity > 0.9 ? setOpacity(0.5) : setOpacity(1.0)}}>Prendre la commande</Text>
+                                <Text style={{color: 'white', paddingHorizontal: SIZES.padding*2}}>Voir la commande</Text>
                             </Animated.View>
                         </TouchableWithoutFeedback>
-                    </View>
+                    </Animated.View>
                 </View>
             </View>
         </SafeAreaView>
@@ -115,10 +162,10 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: '100%',
         top: 32,
-        left: 5,
-        padding: SIZES.padding * 2,
-        margin: SIZES.padding * 2,
-        zIndex: 2
+        left: 0,
+        padding: 0,
+        margin: 0,
+        zIndex: -1
     },
     bonjourLivreurText : {
         color: '#4B4B4B',
