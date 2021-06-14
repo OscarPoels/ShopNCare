@@ -27,7 +27,8 @@ class WelcomeInformations extends React.Component {
     nextPage() {
         this.numberPage += 1
         if(this.numberPage >= 3){
-            this.props.navigation.navigate('Login')
+            this.props.navigation.navigate('Login',{
+            role : this.role})
             
         }
         this.setState({

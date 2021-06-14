@@ -48,10 +48,10 @@ const App = () => {
           screenOptions={{
             headerShown: false,
           }}>
-        <Stack.Screen name='Home' component={Tabs} />
+        <Stack.Screen name='Home/Client' component={Tabs} />
         <Stack.Screen name='OrderDelivery' component={OrderDelivery} />
         <Stack.Screen name='Restaurants' component={Restaurants} />
-        <Stack.Screen name='ListeCommandesLivreur' component={ListeCommandesLivreur} />
+        <Stack.Screen name='Home/Livreur' component={ListeCommandesLivreur} />
         <Stack.Screen name='CommandeDetailleeLivreur' component={CommandeDetailleeLivreur} />
         <Stack.Screen name='ApercuDetailleLivreur' component={ApercuDetailleLivreur} />
         <Stack.Screen name='Welcome' component={Welcome} />

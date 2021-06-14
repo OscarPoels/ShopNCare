@@ -19,9 +19,9 @@ const Welcome  = ({navigation}) => {
                 source={shopNCareIcon}
             />
                 <RedButton onPress={() => navigation.navigate("WelcomeInformations", {
-                                role: 1,
+                                role: "Client",
                             })} buttonText="Je suis client" buttonStyle={{marginTop: 50}}/>
-                <RedButton onPress={() => navigation.navigate("WelcomeInformations",{role: 2}
+                <RedButton onPress={() => navigation.navigate("WelcomeInformations",{role: "Livreur"}
 
                             )} buttonText="Je suis livreur" buttonStyle={{marginTop: 100}}/>
 
