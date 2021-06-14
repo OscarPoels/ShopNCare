@@ -6,6 +6,7 @@ import {Formik} from 'formik';
 import {TextInput} from "react-native-gesture-handler";
 import { icons, COLORS, FONTS, SIZES } from '../constants';
 
+
 const initialValuesLogin = {
     email: '',
     password: '',
@@ -17,7 +18,10 @@ const loginSchema = Yup.object().shape({
 });
 
 
-const Login = ({navigation}) => {
+const Login = ({route,navigation}) => {
+   
+
+   
 
 
   
@@ -81,7 +85,7 @@ const Login = ({navigation}) => {
                             <RedButton
                                 buttonText="Se Connecter"
                                 buttonStyle={{marginTop: 50}}
-                                onPress={() =>navigation.navigate("Home")}
+                                onPress={() =>navigation.navigate("Home/"+route.params.role)}
                             />
                         </View>
 

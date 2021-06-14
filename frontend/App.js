@@ -5,10 +5,13 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import Tabs from './navigation/tabs';
-import { 
+import {
   Home,
   OrderDelivery,
   Restaurants,
+  ListeCommandesLivreur,
+  CommandeDetailleeLivreur,
+  ApercuDetailleLivreur,
   Welcome,
   WelcomeInformations,
   Login,
@@ -45,9 +48,12 @@ const App = () => {
           screenOptions={{
             headerShown: false,
           }}>
-        <Stack.Screen name='Home' component={Tabs} />
+        <Stack.Screen name='Home/Client' component={Tabs} />
         <Stack.Screen name='OrderDelivery' component={OrderDelivery} />
         <Stack.Screen name='Restaurants' component={Restaurants} />
+        <Stack.Screen name='Home/Livreur' component={ListeCommandesLivreur} />
+        <Stack.Screen name='CommandeDetailleeLivreur' component={CommandeDetailleeLivreur} />
+        <Stack.Screen name='ApercuDetailleLivreur' component={ApercuDetailleLivreur} />
         <Stack.Screen name='Welcome' component={Welcome} />
         <Stack.Screen name='WelcomeInformations' component={WelcomeInformations} />
         <Stack.Screen name='LoginOrSignIn' component={LoginOrSignIn} />

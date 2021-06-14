@@ -12,6 +12,7 @@ export const search = require('../assets/icons/search.png');
 export const shopping_basket = require('../assets/icons/shopping-basket.png');
 export const star = require('../assets/icons/star.png');
 export const user = require('../assets/icons/user.png');
+export const logo_snc = require('../assets/icons/logoDetoure2.png');
 export const homelogo = require('../assets/icons/home.png');
 export const pharmacy = require('../assets/icons/pharmacy.png');
 export const market = require('../assets/icons/market.png');
@@ -34,6 +35,8 @@ export default {
     search,
     shopping_basket,
     star,
+    user,
+    logo_snc,
     user,
     homelogo,
     pharmacy,

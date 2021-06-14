@@ -6,6 +6,7 @@ export const avatar_5 = require("../assets/images/avatar-5.jpg");
 export const burger_restaurant = require("../assets/images/burger-restaurant.jpg");
 export const japanese_restaurant = require("../assets/images/japanese-restaurant.jpg");
 export const pizza_restaurant = require("../assets/images/pizza-restaurant.jpg");
+export const image_pharma = require("../assets/images/image_pharma.png");
 export const bricorama = require("../assets/images/bricorama.jpeg");
 export const carrefour = require("../assets/images/carrefour.jpeg");
 export const ikea = require("../assets/images/ikea.jpg");
@@ -33,6 +34,7 @@ export default {
     burger_restaurant,
     japanese_restaurant,
     pizza_restaurant,
+    image_pharma,
     bricorama,
     carrefour,
     ikea,
